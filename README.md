@@ -26,5 +26,5 @@ xterm. `scripts/catff.sh` displays
 [farbfeld](http://tools.suckless.org/farbfeld/) images in terminal. Now you can
 finally replace your old and bloated image viewer with a simple Bash script!
 
-[!lenna](https://i.imgur.com/SwHfhj2.png)
+![lenna](https://i.imgur.com/SwHfhj2.png)
 
