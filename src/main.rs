@@ -1,11 +1,7 @@
 
-#[macro_use]
-extern crate lazy_static;
-extern crate regex;
 extern crate getopts;
 
 use getopts::Options;
-use regex::Regex;
 use std::env;
 use std::f64;
 use std::io::{BufReader, BufRead, stdin};
@@ -47,14 +43,12 @@ impl SRGBColor {
     }
 
     fn from_hex_triplet(s: &str) -> Option<SRGBColor> {
-        lazy_static! {
-            static ref HEX_TRIPLET: Regex =
-                Regex::new(r"#(?P<r>[a-fA-F0-9]{2})(?P<g>[a-fA-F0-9]{2})(?P<b>[a-fA-F0-9]{2})").unwrap();
+        let mut cs = s.chars();
+        if s.chars().count() != 7 || cs.nth(0).unwrap() != '#' {
+            return None;
         }
-        HEX_TRIPLET.captures(s).map(|m| {
-            SRGBColor::new(u8::from_str_radix(&m["r"], 16).unwrap(),
-                           u8::from_str_radix(&m["g"], 16).unwrap(),
-                           u8::from_str_radix(&m["b"], 16).unwrap())
+        u32::from_str_radix(cs.as_str(), 16).ok().map(|t| {
+            SRGBColor::new((t >> 16) as u8, ((t & 0xff00) >> 8) as u8, (t & 0xff) as u8)
         })
     }
 }
