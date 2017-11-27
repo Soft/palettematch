@@ -1,4 +1,4 @@
-# Palettematch :rainbow:
+# Palettematch 🌈
 
 palettematch — Find similar colors from a limited palette. Have you ever been
 in a situation where you had to find a color from a predetermined palette that
